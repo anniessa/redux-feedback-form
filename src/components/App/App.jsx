@@ -3,13 +3,24 @@ import axios from 'axios';
 import './App.css';
 
 import { useEffect } from 'react';
-import axios from 'axios';
+import {useDispatch} from 'react-redux';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getFeedback();
+  }, []);
 
   const getFeedback = () => {
     axios.get('/feedback')
-  }
+    .then((response) => {
+      dispatch({
+        type: "SET_FEEDBACK",
+        payload: response.data
+      });
+    });
+  };
 
 
 

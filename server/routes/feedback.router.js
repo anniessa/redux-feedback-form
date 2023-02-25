@@ -4,12 +4,12 @@ const pool = require('../modules/pool')
 
 // GET the feedback from database
 router.get('/', (req, res) => {
-    pool.query('SELECT * FROM "feedback";')
+    pool.query(`SELECT * FROM "feedback";`)
     .then((result) => {
         res.send(result.rows);
     })
     .catch((error) => {
-        console.log('Error GET /feedback');
+        console.log(`Error GET /feedback`, error);
         res.sendStatus(500);
     });
 })
@@ -18,3 +18,5 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     
 })
+
+module.exports = router;
