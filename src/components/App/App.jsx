@@ -3,10 +3,14 @@ import axios from 'axios';
 import './App.css';
 
 import { useEffect } from 'react';
-import {useDispatch} from 'react-redux';
-import { HashRouter as Router, Route, Link } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { HashRouter as Router, Route } from "react-router-dom";
 
-import FeedbackForm from '../FeedbackForm/FeedbackForm';
+import Feeling from '../Feeling/Feeling';
+import Understanding from '../Understanding/Understanding';
+import Support from '../Support/Support';
+import Comments from '../Comments/Comments';
+import Admin from '../Admin/Admin';
 import Review from '../Review/Review';
 
 function App() {
@@ -16,14 +20,15 @@ function App() {
     getFeedback();
   }, []);
 
+  //GET for admin page
   const getFeedback = () => {
     axios.get('/feedback')
-    .then((response) => {
-      dispatch({
-        type: "SET_FEEDBACK",
-        payload: response.data
+      .then((response) => {
+        dispatch({
+          type: "SET_FEEDBACK",
+          payload: response.data
+        });
       });
-    });
   };
 
 
@@ -36,10 +41,22 @@ function App() {
       </header>
       <Router>
         <Route exact path="/">
-          <FeedbackForm />
+          <Feeling />
+        </Route>
+        <Route exact path="/understanding">
+          <Understanding />
+        </Route>
+        <Route exact path="/support">
+          <Support />
+        </Route>
+        <Route exact path="/comments">
+          <Comments />
         </Route>
         <Route exact path="/review">
           <Review />
+        </Route>
+        <Route exact path="/admin">
+          <Admin />
         </Route>
       </Router>
     </div>
