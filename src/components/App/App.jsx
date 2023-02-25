@@ -2,7 +2,16 @@ import React from 'react';
 import axios from 'axios';
 import './App.css';
 
+import { useEffect } from 'react';
+import axios from 'axios';
+
 function App() {
+
+  const getFeedback = () => {
+    axios.get('/feedback')
+  }
+
+
 
   return (
     <div className='App'>
