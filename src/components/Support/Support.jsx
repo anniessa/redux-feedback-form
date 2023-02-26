@@ -13,7 +13,6 @@ function Support() {
         console.log('handle submit')
         event.preventDefault();
         //on submit, dispatch the rating
-        
         if (support === 0) {
             alert('Please enter a rating.')
         } else {
@@ -21,6 +20,10 @@ function Support() {
             history.push('/comments');
         }
     };
+
+    const goBack = () => {
+        history.push('/understanding')
+    }
 
     const handleChange = (event) => {
         // string value needs to be changed to a number by adding the '+' sign
@@ -38,7 +41,7 @@ function Support() {
                         type="radio"
                         onChange={handleChange}
                         value="1"
-                    // checked prop identifies that the state matches
+                        // checked prop identifies that the state matches
                         checked={support === 1}
                     />
                     <label htmlFor='support'>1</label>
@@ -74,10 +77,13 @@ function Support() {
                         checked={support === 5}
                     />
                     <label htmlFor='support'>5</label>
-
-                    <button type="submit">Next</button>
                 </div>
+                <button type="submit" onClick={goBack}>Back</button>
+                <button type="submit">Next</button>
             </form>
+            <div>
+                
+            </div>
         </div>
     )
 }

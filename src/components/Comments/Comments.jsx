@@ -27,6 +27,10 @@ function Comments() {
         setComments(event.target.value)
     };
 
+    const goBack = () => {
+        history.push('/support')
+    }
+
     return (
         <div>
         <h3> Comments </h3>
@@ -35,6 +39,7 @@ function Comments() {
             rows="10" cols="40"
             onChange={handleChange}
             />
+        <button type="submit" onClick={goBack}>Back</button>
         <button type="submit">Next</button>
         </form>
         </div>

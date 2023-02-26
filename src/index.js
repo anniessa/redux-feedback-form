@@ -28,7 +28,7 @@ const form = (state = {}, action) => {
         case "SET_COMMENTS":
             return { ...state, comments: action.payload };
         case "RESET_FORM":
-            return [];
+            return {};
         default:
             return state;
     }

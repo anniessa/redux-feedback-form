@@ -22,6 +22,10 @@ function Review() {
             });
     }
 
+    const goBack = () => {
+        history.push('/support')
+    }
+
 
     return (
         <div>
@@ -40,7 +44,9 @@ function Review() {
                     Comments: {feedback.comments}
                 </li>
             </ul>
+            <button onClick={goBack}> Back </button>
             <button onClick={handleSubmit}> Submit </button>
+            
         </div>
 
 
