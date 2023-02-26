@@ -2,19 +2,34 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
+import {
+    FormControl,
+    FormLabel,
+    FormHelperText,
+    FormControlLabel,
+    RadioGroup,
+    Radio,
+    Button,
+    Box
+} from "@mui/material";
+
 function Support() {
 
     const history = useHistory();
     const dispatch = useDispatch();
 
     const [support, setSupport] = useState(0);
+     // alert for input validation
+     const [helperText, setHelperText] = useState('');
+     const [error, setError] = useState(false);
 
     const handleSubmit = (event) => {
         console.log('handle submit')
         event.preventDefault();
         //on submit, dispatch the rating
         if (support === 0) {
-            alert('Please enter a rating.')
+            setHelperText('Please enter your answer.');
+            setError(true);
         } else {
             dispatch({ type: "SET_SUPPORT", payload: support })
             history.push('/comments');
@@ -26,65 +41,42 @@ function Support() {
     }
 
     const handleChange = (event) => {
-        // string value needs to be changed to a number by adding the '+' sign
-        setSupport(+event.target.value)
+        setSupport(event.target.value)
     };
 
 
     return (
-        <div>
-            <form id="feedback-form" onSubmit={handleSubmit}>
-                <div>
-                    <h3>Support</h3>
-
-                    <input
-                        type="radio"
+        <>
+            <form onSubmit={handleSubmit}>
+                <FormControl error={error}>
+                    <FormLabel id="support-form">Support</FormLabel>
+                    <RadioGroup
+                        row
+                        aria-labelledby="support-form"
+                        name="Support"
+                        value={support}
                         onChange={handleChange}
-                        value="1"
-                        // checked prop identifies that the state matches
-                        checked={support === 1}
-                    />
-                    <label htmlFor='support'>1</label>
-
-                    <input
-                        type="radio"
-                        onChange={handleChange}
-                        value="2"
-                        checked={support === 2}
-                    />
-                    <label htmlFor='support'>2</label>
-
-                    <input
-                        type="radio"
-                        onChange={handleChange}
-                        value="3"
-                        checked={support === 3}
-                    />
-                    <label htmlFor='support'>3</label>
-
-                    <input
-                        type="radio"
-                        onChange={handleChange}
-                        value="4"
-                        checked={support === 4}
-                    />
-                    <label htmlFor='support'>4</label>
-
-                    <input
-                        type="radio"
-                        onChange={handleChange}
-                        value="5"
-                        checked={support === 5}
-                    />
-                    <label htmlFor='support'>5</label>
-                </div>
-                <button type="submit" onClick={goBack}>Back</button>
-                <button type="submit">Next</button>
+                    >
+                        <FormControlLabel value="1" control={<Radio />} label="1" />
+                        <FormControlLabel value="2" control={<Radio />} label="2" />
+                        <FormControlLabel value="3" control={<Radio />} label="3" />
+                        <FormControlLabel value="4" control={<Radio />} label="4" />
+                        <FormControlLabel value="5" control={<Radio />} label="5" />
+                    </RadioGroup>
+                    <FormHelperText>{helperText}</FormHelperText>
+                    <Box
+                        component="span"
+                        m={1}
+                        display="flex"
+                        justifyContent="space-between"
+                        alignItems="center"
+                    >
+                        <Button variant="contained" onClick={goBack}>Back</Button>
+                        <Button variant="contained" type="submit">Next</Button>
+                    </Box>
+                </FormControl>
             </form>
-            <div>
-                
-            </div>
-        </div>
+        </>
     )
 }
 

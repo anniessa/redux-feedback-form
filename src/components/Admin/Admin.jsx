@@ -4,7 +4,7 @@ import FeedbackItem from "../FeedbackItem/FeedbackItem";
 
 function Admin() {
 
-    const feedbackItems = useSelector ((store) => store.feedback);
+    const feedbackItems = useSelector ((store) => store.totalFeedback);
 
     return (
         <div>

@@ -2,11 +2,26 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+import {
+    Alert,
+    Card,
+    CardActions,
+    CardContent,
+    CardMedia,
+    Button,
+    Typography,
+    Grid
+} from '@mui/material';
+
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
 function Review() {
     //pull feeling value from the store
     const feedback = useSelector((store) => store.form);
     const dispatch = useDispatch();
     const history = useHistory();
+    const swal = withReactContent(Swal);
 
     const handleSubmit = () => {
         console.log('clicked handle submit')
@@ -14,10 +29,17 @@ function Review() {
             .post('/feedback', feedback)
             .then(() => {
                 dispatch({ type: 'RESET_FORM' })
-                history.push('/')
+                swal
+          .fire({
+            icon: 'success',
+            title: "Thank you for your feedback!"
+          })
+          .then(() => {
+            history.push('/')
+          });    
             })
             .catch((error) => {
-                alert('Error posting feedback to server.')
+                alert('Error posting feedback due to empty values.')
                 console.error(error)
             });
     }
@@ -26,30 +48,45 @@ function Review() {
         history.push('/support')
     }
 
-
     return (
+
         <div>
-            <h3> Review Your Feedback </h3>
-            <ul id="review">
-                <li>
-                    Feeling: {feedback.feeling}
-                </li>
-                <li>
-                    Understanding: {feedback.understanding}
-                </li>
-                <li>
-                    Support: {feedback.support}
-                </li>
-                <li>
-                    Comments: {feedback.comments}
-                </li>
-            </ul>
-            <button onClick={goBack}> Back </button>
-            <button onClick={handleSubmit}> Submit </button>
-            
+            <Grid
+                container
+                spacing={0}
+                direction="column"
+                alignItems="center"
+                justify="center"
+                style={{ minHeight: '100vh' }}
+            >
+
+                <Grid item xs={3}></Grid>
+
+                <Card sx={{ maxWidth: 500 }}>
+                    <CardMedia
+                        sx={{ height: 500 }}
+                        image="/images/goat_small.jpg"
+                        title="check circle outline icon"
+                    />
+                    <CardContent>
+                        <Typography gutterBottom variant="h5" component="div">
+                            Summary
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                            Please review your answers before submitting.
+                        </Typography>
+                        <p>Feeling: {feedback.feeling}</p>
+                        <p>Understanding: {feedback.understanding}</p>
+                        <p>Support: {feedback.support}</p>
+                        <p>Comments: {feedback.comments}</p>
+                    </CardContent>
+                    <CardActions>
+                        <Button size="small" onClick={goBack}> Back </Button>
+                        <Button size="small" onClick={handleSubmit}> Submit </Button>
+                    </CardActions>
+                </Card>
+                </Grid>
         </div>
-
-
     )
 }
 

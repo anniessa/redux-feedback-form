@@ -9,7 +9,7 @@ import logger from 'redux-logger';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 // set on Admin page
-const feedback = (state = [], action) => {
+const totalFeedback = (state = [], action) => {
     if (action.type === "SET_FEEDBACK") {
         return action.payload;
     }
@@ -36,7 +36,7 @@ const form = (state = {}, action) => {
 
 const store = createStore(
     combineReducers({
-        feedback, form
+        totalFeedback, form
     }),
     applyMiddleware(logger)
 );

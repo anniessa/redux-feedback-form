@@ -2,6 +2,8 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
+import { Box, Button, TextField, FormHelperText } from '@mui/material';
+
 
 function Comments() {
 
@@ -9,14 +11,17 @@ function Comments() {
     const dispatch = useDispatch();
 
     const [comments, setComments] = useState('');
+    const [helperText, setHelperText] = useState('');
+    const [error, setError] = useState(false);
 
     const handleSubmit = (event) => {
         console.log('handle submit')
         event.preventDefault();
         //on submit, dispatch the rating
-        
+
         if (comments === '') {
-            alert('Please enter your comments.')
+            setHelperText('Please enter your comments.');
+            setError(true);
         } else {
             dispatch({ type: "SET_COMMENTS", payload: comments })
             history.push('/review');
@@ -32,17 +37,31 @@ function Comments() {
     }
 
     return (
-        <div>
-        <h3> Comments </h3>
-        <form id="comment-form"onSubmit={handleSubmit}>
-            <textarea
-            rows="10" cols="40"
-            onChange={handleChange}
-            />
-        <button type="submit" onClick={goBack}>Back</button>
-        <button type="submit">Next</button>
-        </form>
-        </div>
+        <>
+            <Box
+                component="span"
+                m={2}
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+            >
+                <form id="comment-form" onSubmit={handleSubmit}>
+                    <TextField
+                        id="outlined-textarea"
+                        label="Comments"
+                        placeholder="Please add your comments here"
+                        onChange={handleChange}
+                        error={error}
+                        multiline
+                    />
+                    <FormHelperText error={error}>{helperText}</FormHelperText>
+                    <Button variant="contained" type="submit" onClick={goBack}>Back</Button>
+                    <Button variant="contained" type="submit">Next</Button>
+
+                </form>
+            </Box>
+        </>
+
     )
 }
 
