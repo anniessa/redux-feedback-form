@@ -29,11 +29,13 @@ function Admin() {
     };
 
     const handleChange = (event) => {
+        console.log(event.target.flagged)
         setFlagged(event.target.flagged);
-        
+
         axios.put(`/feedback/${feedbackItems.id}`, feedbackItems.flagged)
         .then(() => {
-            dispatch({type: "SET_FLAGGED", payload: flagged})
+            // need to set the opposite of flagged when changed
+            dispatch({type: "SET_FLAGGED", payload: !flagged})
         })
         .catch((error) => {
             console.error(error)
