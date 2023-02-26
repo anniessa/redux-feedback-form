@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
+import Header from '../Header/Header';
 import './App.css';
+
 
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
@@ -34,22 +36,22 @@ function App() {
 
 
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <h1 className='App-title'>Feedback!</h1>
-        <h4>Don't forget it!</h4>
-      </header>
+    <div className="App">
       <Router>
         <Route exact path="/">
+          <Header title="Feedback" subTitle="How are you feeling today?" />
           <Feeling />
         </Route>
         <Route exact path="/understanding">
+          <Header title="Feedback" subTitle="How well are you understanding the content?" />
           <Understanding />
         </Route>
         <Route exact path="/support">
+          <Header title="Feedback" subTitle="How well are you being supported?" />
           <Support />
         </Route>
         <Route exact path="/comments">
+          <Header title="Feedback" subTitle="Any comments you want to leave?" />
           <Comments />
         </Route>
         <Route exact path="/review">
@@ -60,7 +62,7 @@ function App() {
         </Route>
       </Router>
     </div>
-  );
+  )
 }
 
 export default App;

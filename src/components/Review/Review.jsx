@@ -39,7 +39,8 @@ function Review() {
           });    
             })
             .catch((error) => {
-                alert('Error posting feedback due to empty values.')
+                // tried to make this a SweetAlert... curious if it's possible (can you have a promise for a catch?)
+                alert('Error posting feedback due to empty values. Please go back and enter a response for each question.')
                 console.error(error)
             });
     }
@@ -61,6 +62,9 @@ function Review() {
             >
 
                 <Grid item xs={3}></Grid>
+
+            {/* I wanted to practice making a card in MUI, not the most coherent styling, but hopefully that's okay for
+            the purposes of this assignment! */}
 
                 <Card sx={{ maxWidth: 500 }}>
                     <CardMedia
