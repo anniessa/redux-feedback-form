@@ -22,7 +22,7 @@ const form = (state = {}, action) => {
         case "SET_FEELING":
             return { ...state, feeling: action.payload };
         case "SET_UNDERSTANDING":
-            return { ...state, understand: action.payload };
+            return { ...state, understanding: action.payload };
         case "SET_SUPPORT":
             return { ...state, support: action.payload };
         case "SET_COMMENTS":
