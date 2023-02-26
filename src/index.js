@@ -16,6 +16,14 @@ const totalFeedback = (state = [], action) => {
     return state;
 }
 
+// set flagged
+const flagged = (state = {}, action) => {
+    if (action.type === "SET_FLAGGED") {
+        return action.payload;
+    }
+    return state;
+}
+
 // 
 const form = (state = {}, action) => {
     switch (action.type) {
@@ -36,7 +44,7 @@ const form = (state = {}, action) => {
 
 const store = createStore(
     combineReducers({
-        totalFeedback, form
+        totalFeedback, form, flagged
     }),
     applyMiddleware(logger)
 );

@@ -16,22 +16,7 @@ import Admin from '../Admin/Admin';
 import Review from '../Review/Review';
 
 function App() {
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    getFeedback();
-  }, []);
-
-  //GET for admin page
-  const getFeedback = () => {
-    axios.get('/feedback')
-      .then((response) => {
-        dispatch({
-          type: "SET_FEEDBACK",
-          payload: response.data
-        });
-      });
-  };
 
 
 
