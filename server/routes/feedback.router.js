@@ -14,6 +14,7 @@ router.get('/', (req, res) => {
     });
 })
 
+// Tried to get PUT to work
 router.put('/:id', (req, res) => {
    const queryText= (`UPDATE "feedback" SET "flagged"= $1 WHERE "id" = $2`)
     let queryParams = [req.body.flagged, req.params.id]
@@ -22,7 +23,7 @@ router.put('/:id', (req, res) => {
         res.sendStatus(201);
     })
     .catch((error) => {
-        console.log(`Error GET /feedback`, error);
+        console.log(`Error PUT /feedback`, error);
         res.sendStatus(500);
     });
 })
@@ -43,20 +44,5 @@ router.post('/', (req, res) => {
     })
 })
 
-//POST flag
-router.post('/', (req, res) => {
-    console.log(req.body)
-    const feedback = [req.body.flagged]
-    console.log(feedback)
-    pool.query(`INSERT INTO "feedback" ("flagged")
-    VALUES ($1);`, feedback)
-    .then(() => {
-        res.sendStatus(201)
-    })
-    .catch((error)=> {
-        console.log(error)
-        res.sendStatus(500);
-    })
-})
 
 module.exports = router;
