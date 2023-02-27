@@ -8,17 +8,17 @@ This app is a tool to collect feedback from students about how they are feeling,
 
 ## Screen Shot
 
-
+<img width="1055" alt="Screenshot 2023-02-26 at 5 03 20 PM" src="https://user-images.githubusercontent.com/111613142/221446041-1a268735-9bd0-4407-a5b0-3f5a6837e2bb.png">
 
 ### Prerequisites
 
 Link to software that is required to install the app (e.g. node).
 
 - [Node.js](https://nodejs.org/en/)
-- React
-- Redux
-- SweetAlert2
-- Material UI
+- [React](https://reactjs.org/)
+- [Redux](https://redux.js.org/)
+- [SweetAlert2](https://sweetalert2.github.io/)
+- [Material UI](https://mui.com/)
 
 ## Installation
 
@@ -47,10 +47,10 @@ npm run client
 ## Built With
 
 - [Node.js](https://nodejs.org/en/)
-- React
-- Redux
-- SweetAlert2
-- Material UI
+- [React](https://reactjs.org/)
+- [Redux](https://redux.js.org/)
+- [SweetAlert2](https://sweetalert2.github.io/)
+- [Material UI](https://mui.com/)
 
 ## Acknowledgement
 Thanks to [Prime Digital Academy](www.primeacademy.io) who equipped and helped me to make this application a reality!
